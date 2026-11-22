@@ -181,6 +181,10 @@ export default function LoginPage() {
             </button>
           </div>
         </form>
+
+        <div className="form-full" style={{ textAlign: 'center', marginTop: 'var(--space-4)' }}>
+          <a href="/features">See all features</a>
+        </div>
       </div>
     </div>
   );

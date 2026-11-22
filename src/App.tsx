@@ -11,6 +11,7 @@ import AiAssistantPage from './pages/AiAssistantPage';
 import NotificationsPage from './pages/NotificationsPage';
 import SettingsPage from './pages/SettingsPage';
 import LoginPage from './pages/LoginPage';
+import FeaturesPage from './pages/FeaturesPage';
 import { AuthProvider } from './auth/AuthContext';
 import { RequireAuth } from './auth/RequireAuth';
 
@@ -19,6 +20,7 @@ export default function App() {
     <AuthProvider>
       <Routes>
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/features" element={<FeaturesPage />} />
         <Route
           element={
             <RequireAuth>

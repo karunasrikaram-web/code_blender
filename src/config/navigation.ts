@@ -29,5 +29,6 @@ export const navigationItems: NavItem[] = [
   { label: 'AI Assistant', path: '/ai-assistant', icon: Sparkles },
   { label: 'Notifications', path: '/notifications', icon: Bell },
   { label: 'Settings', path: '/settings', icon: Settings },
+  { label: 'Features', path: '/features', icon: Sparkles },
 ];
 
