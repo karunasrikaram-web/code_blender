@@ -1,0 +1,86 @@
+﻿node.exe : npm notice run smart-cash-flow-manager@0.1.0 npx
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Users\karam\AppData\Roaming\ ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (npm notice run ...nager@0.1.0 npx:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+npm notice run tsc --noEmit --pretty false
+src/components/ui/StatusBadge.tsx(3,24): error TS2339: Property 'status' does not exist on type 'Customer'.
+src/data/calculations.ts(7,26): error TS2367: This comparison appears to be unintentional because the types 'InvoiceStatus' and '"Paid"' have no overlap.
+src/data/calculations.ts(8,45): error TS2339: Property 'amount' does not exist on type 'Invoice'.
+src/data/calculations.ts(14,26): error TS2367: This comparison appears to be unintentional because the types 'InvoiceStatus' and '"Paid"' have no overlap.
+src/data/calculations.ts(14,55): error TS2367: This comparison appears to be unintentional because the types 'InvoiceStatus' and '"Draft"' have no overlap.
+src/data/calculations.ts(15,45): error TS2339: Property 'amount' does not exist on type 'Invoice'.
+src/data/calculations.ts(21,26): error TS2367: This comparison appears to be unintentional because the types 'InvoiceStatus' and '"Overdue"' have no overlap.
+src/data/calculations.ts(22,45): error TS2339: Property 'amount' does not exist on type 'Invoice'.
+src/data/sampleData.ts(1,15): error TS2305: Module '"../types"' has no exported member 'Activity'.
+src/data/sampleData.ts(1,25): error TS2305: Module '"../types"' has no exported member 'AppNotification'.
+src/data/sampleData.ts(14,5): error TS2353: Object literal may only specify known properties, and 'projectAmount' does not exist in type 'Customer'.
+src/data/sampleData.ts(24,5): error TS2353: Object literal may only specify known properties, and 'projectAmount' does not exist in type 'Customer'.
+src/data/sampleData.ts(34,5): error TS2353: Object literal may only specify known properties, and 'projectAmount' does not exist in type 'Customer'.
+src/data/sampleData.ts(44,5): error TS2353: Object literal may only specify known properties, and 'projectAmount' does not exist in type 'Customer'.
+src/data/sampleData.ts(54,5): error TS2353: Object literal may only specify known properties, and 'projectAmount' does not exist in type 'Customer'.
+src/data/sampleData.ts(64,5): error TS2353: Object literal may only specify known properties, and 'projectAmount' does not exist in type 'Customer'.
+src/data/sampleData.ts(74,5): error TS2353: Object literal may only specify known properties, and 'projectAmount' does not exist in type 'Customer'.
+src/data/sampleData.ts(84,5): error TS2353: Object literal may only specify known properties, and 'projectAmount' does not exist in type 'Customer'.
+src/data/sampleData.ts(91,161): error TS2820: Type '"Paid"' is not assignable to type 'InvoiceStatus'. Did you mean '"paid"'?
+src/data/sampleData.ts(92,161): error TS2820: Type '"Paid"' is not assignable to type 'InvoiceStatus'. Did you mean '"paid"'?
+src/data/sampleData.ts(93,159): error TS2820: Type '"Paid"' is not assignable to type 'InvoiceStatus'. Did you mean '"paid"'?
+src/data/sampleData.ts(94,161): error TS2820: Type '"Overdue"' is not assignable to type 'InvoiceStatus'. Did you mean '"overdue"'?
+src/data/sampleData.ts(95,161): error TS2820: Type '"Paid"' is not assignable to type 'InvoiceStatus'. Did you mean '"paid"'?
+src/data/sampleData.ts(96,161): error TS2820: Type '"Paid"' is not assignable to type 'InvoiceStatus'. Did you mean '"paid"'?
+src/data/sampleData.ts(97,158): error TS2820: Type '"Pending"' is not assignable to type 'InvoiceStatus'. Did you mean '"pending"'?
+src/data/sampleData.ts(98,157): error TS2820: Type '"Paid"' is not assignable to type 'InvoiceStatus'. Did you mean '"paid"'?
+src/data/sampleData.ts(99,157): error TS2820: Type '"Overdue"' is not assignable to type 'InvoiceStatus'. Did you mean '"overdue"'?
+src/data/sampleData.ts(100,157): error TS2820: Type '"Paid"' is not assignable to type 'InvoiceStatus'. Did you mean '"paid"'?
+src/data/sampleData.ts(101,160): error TS2820: Type '"Draft"' is not assignable to type 'InvoiceStatus'. Did you mean '"draft"'?
+src/data/sampleData.ts(102,159): error TS2820: Type '"Pending"' is not assignable to type 'InvoiceStatus'. Did you mean '"pending"'?
+src/data/sampleData.ts(115,65): error TS2353: Object literal may only specify known properties, and 'dueDate' does not exist in type 'Payment'.
+src/data/sampleData.ts(116,63): error TS2353: Object literal may only specify known properties, and 'dueDate' does not exist in type 'Payment'.
+src/data/sampleData.ts(117,65): error TS2353: Object literal may only specify known properties, and 'dueDate' does not exist in type 'Payment'.
+src/data/sampleData.ts(118,66): error TS2353: Object literal may only specify known properties, and 'dueDate' does not exist in type 'Payment'.
+src/data/sampleData.ts(119,64): error TS2353: Object literal may only specify known properties, and 'dueDate' does not exist in type 'Payment'.
+src/pages/CustomersPage.tsx(16,32): error TS2339: Property 'status' does not exist on type 'Customer'.
+src/pages/CustomersPage.tsx(50,36): error TS2339: Property 'projectAmount' does not exist on type 'Customer'.
+src/pages/CustomersPage.tsx(51,33): error TS2339: Property 'paidAmount' does not exist on type 'Customer'.
+src/pages/CustomersPage.tsx(52,22): error TS2339: Property 'status' does not exist on type 'Customer'.
+src/pages/CustomersPage.tsx(109,64): error TS2339: Property 'status' does not exist on type 'Customer'.
+src/pages/CustomersPage.tsx(159,7): error TS2353: Object literal may only specify known properties, and 'projectAmount' does not exist in type 'Customer'.
+src/pages/CustomersPage.tsx(182,53): error TS2339: Property 'projectAmount' does not exist on type 'Customer'.
+src/pages/CustomersPage.tsx(184,100): error TS2339: Property 'status' does not exist on type 'Customer'.
+src/pages/CustomersPage.tsx(307,54): error TS2339: Property 'status' does not exist on type 'Customer'.
+src/pages/CustomersPage.tsx(316,51): error TS2339: Property 'projectAmount' does not exist on type 'Customer'.
+src/pages/CustomersPage.tsx(320,51): error TS2339: Property 'paidAmount' does not exist on type 'Customer'.
+src/pages/CustomersPage.tsx(324,51): error TS2339: Property 'projectAmount' does not exist on type 'Customer'.
+src/pages/CustomersPage.tsx(324,83): error TS2339: Property 'paidAmount' does not exist on type 'Customer'.
+src/pages/DashboardPage.tsx(48,21): error TS2339: Property 'issueDate' does not exist on type 'Invoice'.
+src/pages/DashboardPage.tsx(48,47): error TS2339: Property 'issueDate' does not exist on type 'Invoice'.
+src/pages/DashboardPage.tsx(51,63): error TS2339: Property 'dueDate' does not exist on type 'Payment'.
+src/pages/DashboardPage.tsx(51,87): error TS2339: Property 'dueDate' does not exist on type 'Payment'.
+src/pages/DashboardPage.tsx(54,68): error TS2339: Property 'number' does not exist on type 'Invoice'.
+src/pages/DashboardPage.tsx(60,49): error TS2339: Property 'amount' does not exist on type 'Invoice'.
+src/pages/DashboardPage.tsx(166,66): error TS2339: Property 'description' does not exist on type 'Payment'.
+src/pages/DashboardPage.tsx(167,81): error TS2339: Property 'dueDate' does not exist on type 'Payment'.
+src/pages/InvoicesPage.tsx(19,48): error TS2820: Type '"Paid"' is not assignable to type 'StatusFilter'. Did you mean '"paid"'?
+src/pages/InvoicesPage.tsx(19,56): error TS2820: Type '"Pending"' is not assignable to type 'StatusFilter'. Did you mean '"pending"'?
+src/pages/InvoicesPage.tsx(19,67): error TS2820: Type '"Overdue"' is not assignable to type 'StatusFilter'. Did you mean '"overdue"'?
+src/pages/InvoicesPage.tsx(19,78): error TS2820: Type '"Draft"' is not assignable to type 'StatusFilter'. Did you mean '"draft"'?
+src/pages/InvoicesPage.tsx(78,5): error TS2820: Type '"Pending"' is not assignable to type 'InvoiceStatus'. Did you mean '"pending"'?
+src/pages/InvoicesPage.tsx(85,18): error TS2339: Property 'number' does not exist on type 'Invoice'.
+src/pages/InvoicesPage.tsx(86,34): error TS2339: Property 'number' does not exist on type 'Invoice'.
+src/pages/InvoicesPage.tsx(142,35): error TS2339: Property 'issueDate' does not exist on type 'Invoice'.
+src/pages/InvoicesPage.tsx(150,39): error TS2339: Property 'amount' does not exist on type 'Invoice'.
+src/pages/InvoicesPage.tsx(201,15): error TS2339: Property 'number' does not exist on type 'Invoice'.
+src/pages/InvoicesPage.tsx(246,7): error TS2353: Object literal may only specify known properties, and 'number' does not exist in type 'Invoice'.
+src/pages/InvoicesPage.tsx(274,71): error TS2339: Property 'number' does not exist on type 'Invoice'.
+src/pages/InvoicesPage.tsx(285,51): error TS2339: Property 'amount' does not exist on type 'Invoice'.
+src/pages/InvoicesPage.tsx(290,47): error TS2339: Property 'issueDate' does not exist on type 'Invoice'.
+src/pages/InvoicesPage.tsx(512,29): error TS2345: Argument of type '(prev: InvoiceForm) => { status: "Pending" | "Draft"; customerId: string; issueDate: string; dueDate: string; lines: LineItem[]; notes: string; }' is not assignable to parameter of type 'SetStateAction<InvoiceForm>'.
+  Type '(prev: InvoiceForm) => { status: "Pending" | "Draft"; customerId: string; issueDate: string; dueDate: string; lines: LineItem[]; notes: string; }' is not assignable to type '(prevState: InvoiceForm) => InvoiceForm'.
+    Call signature return types '{ status: "Pending" | "Draft"; customerId: string; issueDate: string; dueDate: string; lines: LineItem[]; notes: string; }' and 'InvoiceForm' are incompatible.
+      The types of 'status' are incompatible between these types.
+        Type '"Pending" | "Draft"' is not assignable to type 'InvoiceStatus'.
+          Type '"Pending"' is not assignable to type 'InvoiceStatus'. Did you mean '"pending"'?
+src/pages/InvoicesPage.tsx(525,70): error TS2345: Argument of type '"Draft"' is not assignable to parameter of type 'InvoiceStatus'.
+src/pages/InvoicesPage.tsx(576,45): error TS2339: Property 'number' does not exist on type 'Invoice'.
