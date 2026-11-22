@@ -816,7 +816,7 @@ export default function InvoicesPage() {
                     subtotal: viewDetail.subtotal,
                     totalAmount: viewDetail.totalAmount,
                     paidAmount: viewDetail.paidAmount,
-                  })
+                  }).catch((err) => console.error('Invoice PDF failed', err))
                 }
               >
                 Download PDF

@@ -14,6 +14,7 @@ import { createExpense, deleteExpense, listExpenses, updateExpense } from '../se
 import type { ExpenseInput } from '../services/api';
 import { EXPENSE_CATEGORIES } from '../types';
 import type { Expense, ExpenseStatus } from '../types';
+import { formatCurrency } from '../utils/format';
 
 type StatusFilter = 'all' | ExpenseStatus;
 
@@ -77,9 +78,6 @@ function round2(value: number): number {
   return Math.round(value * 100) / 100;
 }
 
-function formatAmount(value: number): string {
-  return value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-}
 
 function statusLabel(status: ExpenseStatus): 'Paid' | 'Pending' {
   return status === 'paid' ? 'Paid' : 'Pending';
@@ -264,7 +262,7 @@ export default function ExpensesPage() {
       key: 'amount',
       header: 'Amount',
       align: 'right',
-      render: (expense) => formatAmount(expense.amount),
+      render: (expense) => formatCurrency(expense.amount),
     },
     { key: 'expenseDate', header: 'Expense date', render: (expense) => expense.expenseDate },
     { key: 'dueDate', header: 'Due date', render: (expense) => expense.dueDate ?? '—' },
@@ -316,14 +314,14 @@ export default function ExpensesPage() {
           <div className="stat-grid">
             <StatCard
               label="Total expenses"
-              value={formatAmount(totals.all)}
+              value={formatCurrency(totals.all)}
               icon={Receipt}
               accent="primary"
             />
-            <StatCard label="Paid" value={formatAmount(totals.paid)} icon={Wallet} accent="success" />
+            <StatCard label="Paid" value={formatCurrency(totals.paid)} icon={Wallet} accent="success" />
             <StatCard
               label="Pending"
-              value={formatAmount(totals.pending)}
+              value={formatCurrency(totals.pending)}
               icon={Clock}
               accent="warning"
             />

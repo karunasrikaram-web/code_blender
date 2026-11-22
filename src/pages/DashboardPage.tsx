@@ -23,7 +23,7 @@ import type { DashboardSummary } from '../services/api';
 import { getDashboardSummary, listInvoices, listPayments } from '../services/api';
 import type { Invoice, InvoiceStatus, Payment } from '../types';
 import type { SampleInvoiceStatus } from '../types/sample';
-import { formatCurrency, formatDate } from '../utils/format';
+import { formatCurrency, formatDate, formatInrCompact } from '../utils/format';
 
 interface StatItem {
   label: string;
@@ -154,7 +154,7 @@ export default function DashboardPage() {
             <YAxis
               stroke="#64748b"
               tickLine={false}
-              tickFormatter={(value: number) => `$${(value / 1000).toFixed(0)}k`}
+              tickFormatter={(value: number) => formatInrCompact(value)}
             />
             <Tooltip formatter={(value) => formatCurrency(Number(value))} />
             <Legend />

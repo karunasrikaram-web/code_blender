@@ -1,5 +1,7 @@
 import { jsPDF } from 'jspdf';
 import autoTable from 'jspdf-autotable';
+import { formatCurrency } from '../utils/format';
+import fontUrl from '../assets/fonts/NotoSans-Regular.ttf?url';
 
 export type InvoicePdfData = {
   invoiceNumber: string;
@@ -19,10 +21,40 @@ export type InvoicePdfData = {
 
 const MARGIN = 14;
 
-/** Plain number with two decimals and an 'Rs.' prefix (no currency symbol, so the default PDF font renders it). */
-function formatMoney(value: number): string {
-  const safe = Number.isFinite(value) ? value : 0;
-  return `Rs. ${safe.toFixed(2)}`;
+const PDF_FONT_NAME = 'NotoSans';
+const PDF_FONT_FILE = 'NotoSans-Regular.ttf';
+
+// Cached so the font is fetched and encoded once per session.
+let fontBase64Promise: Promise<string> | null = null;
+
+function arrayBufferToBase64(buffer: ArrayBuffer): string {
+  const bytes = new Uint8Array(buffer);
+  let binary = '';
+  const chunkSize = 0x8000;
+  for (let i = 0; i < bytes.length; i += chunkSize) {
+    binary += String.fromCharCode(...bytes.subarray(i, i + chunkSize));
+  }
+  return btoa(binary);
+}
+
+function loadInvoiceFont(): Promise<string> {
+  if (!fontBase64Promise) {
+    fontBase64Promise = fetch(fontUrl)
+      .then((response) => {
+        if (!response.ok) throw new Error(`Failed to load PDF font: ${response.status}`);
+        return response.arrayBuffer();
+      })
+      .then(arrayBufferToBase64);
+  }
+  return fontBase64Promise;
+}
+
+/**
+ * INR amount for the PDF, e.g. 125000 -> "₹1,25,000.00". The embedded Noto Sans font
+ * supplies the ₹ glyph, which the default Helvetica font cannot render.
+ */
+export function formatMoney(value: number): string {
+  return formatCurrency(value);
 }
 
 function nonEmpty(value: string | null | undefined): string | null {
@@ -31,8 +63,11 @@ function nonEmpty(value: string | null | undefined): string | null {
   return trimmed === '' ? null : trimmed;
 }
 
-export function downloadInvoicePdf(invoice: InvoicePdfData): void {
+export async function downloadInvoicePdf(invoice: InvoicePdfData): Promise<void> {
+  const fontBase64 = await loadInvoiceFont();
   const doc = new jsPDF({ unit: 'mm', format: 'a4' });
+  doc.addFileToVFS(PDF_FONT_FILE, fontBase64);
+  doc.addFont(PDF_FONT_FILE, PDF_FONT_NAME, 'normal');
   const pageWidth = doc.internal.pageSize.getWidth();
   const rightX = pageWidth - MARGIN;
   let y = 20;
@@ -86,6 +121,7 @@ export function downloadInvoicePdf(invoice: InvoicePdfData): void {
       formatMoney(item.lineTotal),
     ]),
     theme: 'grid',
+    styles: { font: PDF_FONT_NAME },
     headStyles: { fillColor: [40, 40, 40] },
     columnStyles: {
       1: { halign: 'right' },
@@ -110,6 +146,7 @@ export function downloadInvoicePdf(invoice: InvoicePdfData): void {
     const isBalance = label === 'Balance due';
     doc.setFont('helvetica', isBalance ? 'bold' : 'normal');
     doc.text(label, rightX - 45, y);
+    doc.setFont(PDF_FONT_NAME, 'normal');
     doc.text(value, rightX, y, { align: 'right' });
     y += 6;
   }

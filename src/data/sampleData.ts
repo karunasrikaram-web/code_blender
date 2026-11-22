@@ -5,10 +5,11 @@ import type {
   SampleInvoice,
   SamplePayment,
 } from '../types/sample';
+import { formatCurrency } from '../utils/format';
 
 // Sample data for Alex Morgan, a freelance website designer.
 // Invoice totals are consistent with customer paidAmount values:
-// paid invoices = $17,750, outstanding (Pending + Overdue) = $9,850, overdue = $6,000.
+// paid invoices = ₹17,750, outstanding (Pending + Overdue) = ₹9,850, overdue = ₹6,000.
 
 export const sampleCustomers: SampleCustomer[] = [
   {
@@ -113,8 +114,8 @@ export const sampleActivities: Activity[] = [
   { id: 'act-002', customerName: 'Lena Rodriguez', description: 'Overdue reminder sent for INV-2025-004', date: '2025-05-17', type: 'reminder' },
   { id: 'act-003', customerName: 'Priya Patel', description: 'Invoice INV-2025-007 sent', date: '2025-05-08', type: 'invoice' },
   { id: 'act-004', customerName: 'David Okafor', description: 'Balance invoice INV-2025-012 sent', date: '2025-05-01', type: 'invoice' },
-  { id: 'act-005', customerName: 'Hannah Lee', description: 'Final payment of $1,900.00 received', date: '2025-03-18', type: 'payment' },
-  { id: 'act-006', customerName: 'Tom Becker', description: 'Partial payment of $1,400.00 received', date: '2025-03-14', type: 'payment' },
+  { id: 'act-005', customerName: 'Hannah Lee', description: `Final payment of ${formatCurrency(1900)} received`, date: '2025-03-18', type: 'payment' },
+  { id: 'act-006', customerName: 'Tom Becker', description: `Partial payment of ${formatCurrency(1400)} received`, date: '2025-03-14', type: 'payment' },
 ];
 
 export const samplePayments: SamplePayment[] = [
@@ -129,14 +130,14 @@ export const sampleNotifications: AppNotification[] = [
   {
     id: 'not-001',
     title: 'Invoice overdue',
-    message: 'INV-2025-004 for Lena Rodriguez ($4,600.00) is past due. Send a reminder or follow up.',
+    message: `INV-2025-004 for Lena Rodriguez (${formatCurrency(4600)}) is past due. Send a reminder or follow up.`,
     severity: 'danger',
     date: '2025-05-19',
   },
   {
     id: 'not-002',
     title: 'Invoice overdue',
-    message: 'INV-2025-009 for Tom Becker ($1,400.00) was due on April 24.',
+    message: `INV-2025-009 for Tom Becker (${formatCurrency(1400)}) was due on April 24.`,
     severity: 'warning',
     date: '2025-05-19',
   },
@@ -150,7 +151,7 @@ export const sampleNotifications: AppNotification[] = [
   {
     id: 'not-004',
     title: 'Payment received',
-    message: 'Hannah Lee paid $1,900.00 for the Lumen Photography Studio portfolio site.',
+    message: `Hannah Lee paid ${formatCurrency(1900)} for the Lumen Photography Studio portfolio site.`,
     severity: 'success',
     date: '2025-03-18',
   },
