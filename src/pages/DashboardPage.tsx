@@ -21,6 +21,7 @@ import Table from '../components/ui/Table';
 import type { TableColumn } from '../components/ui/Table';
 import type { DashboardSummary } from '../services/api';
 import { getDashboardSummary, listInvoices, listPayments } from '../services/api';
+import { getProfile } from '../services/settingsApi';
 import type { Invoice, InvoiceStatus, Payment } from '../types';
 import type { SampleInvoiceStatus } from '../types/sample';
 import { formatCurrency, formatDate, formatInrCompact } from '../utils/format';
@@ -69,6 +70,24 @@ export default function DashboardPage() {
   const [payments, setPayments] = useState<Payment[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [firstName, setFirstName] = useState<string | null>(null);
+
+  useEffect(() => {
+    let active = true;
+    getProfile()
+      .then((profile) => {
+        if (!active) return;
+        const name = profile.full_name.trim() || profile.email.trim().split('@')[0] || '';
+        const first = name.split(/\s+/)[0] ?? '';
+        setFirstName(first !== '' ? first : null);
+      })
+      .catch(() => {
+        // Omit the welcome line if the profile cannot be loaded.
+      });
+    return () => {
+      active = false;
+    };
+  }, []);
 
   useEffect(() => {
     let active = true;
@@ -114,7 +133,7 @@ export default function DashboardPage() {
       <div className="ui-page-header">
         <PageHeader
           title="Dashboard"
-          description="Welcome back, Alex. Here is your business at a glance."
+          description="Here is your business at a glance."
           actions={
             <Link to="/invoices" className="btn btn-primary">
               New invoice
@@ -122,6 +141,8 @@ export default function DashboardPage() {
           }
         />
       </div>
+
+      {firstName && <p className="dashboard-welcome">Welcome back, {firstName}</p>}
 
       {error && (
         <p role="alert" style={{ color: '#dc2626' }}>
