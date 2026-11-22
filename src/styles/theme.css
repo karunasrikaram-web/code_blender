@@ -1,0 +1,504 @@
+/* ==========================================================================
+   Smart Cash Flow Manager - theme layer
+   Loaded after global.css. Overrides the palette with navy / white / subtle
+   green, adds light and dark tokens, and restyles EXISTING class names.
+   Theme is chosen by the app via <html data-theme="light|dark">.
+   Red and amber are reserved for financial warnings and overdue states.
+   ========================================================================== */
+
+/* 1. Tokens --------------------------------------------------------------- */
+:root {
+  --color-navy: #1e3a5f;
+  --color-navy-hover: #16304f;
+  --color-navy-soft: #e8eef6;
+  --color-bg: #f5f7fb;
+  --color-surface: #ffffff;
+  --color-surface-2: #f1f5f9;
+  --color-border: #e2e8f0;
+  --color-border-strong: #cbd5e1;
+  --color-text: #0f172a;
+  --color-text-muted: #5b6b82;
+  --color-on-soft: #1e3a5f;
+  --color-link: #1e3a5f;
+  --color-accent-green: #16a34a;
+  --color-focus-ring: rgba(22, 163, 74, 0.22);
+  --color-overlay: rgba(15, 23, 42, 0.5);
+  --color-success-soft: #dcfce7;
+  --color-success-text: #15803d;
+  --color-warning: #d97706;
+  --color-warning-soft: #fef3c7;
+  --color-warning-text: #92400e;
+  --color-danger: #dc2626;
+  --color-danger-soft: #fee2e2;
+  --color-danger-text: #b91c1c;
+  --color-info: #0369a1;
+  --color-info-soft: #e0f2fe;
+  --color-sidebar: #1e3a5f;
+  --color-sidebar-hover: #284b78;
+  --color-sidebar-text: #cbd8ea;
+
+  --radius-card: 16px;
+  --radius-control: 10px;
+  --shadow-card: 0 1px 2px rgba(15, 23, 42, 0.06), 0 4px 16px rgba(15, 23, 42, 0.06);
+  --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.1);
+  --shadow-lg: 0 20px 40px rgba(15, 23, 42, 0.18);
+  --transition: 150ms ease;
+  --font-family: system-ui, "Segoe UI", Inter, sans-serif;
+
+  /* Aliases so global.css class rules pick up the new palette */
+  --color-primary: var(--color-navy);
+  --color-primary-hover: var(--color-navy-hover);
+  --color-primary-soft: var(--color-navy-soft);
+  --color-primary-light: var(--color-accent-green);
+  --color-card: var(--color-surface);
+  --color-muted: var(--color-text-muted);
+  --color-success: var(--color-accent-green);
+  --color-neutral-soft: var(--color-surface-2);
+  --radius-sm: var(--radius-control);
+  --radius-md: var(--radius-card);
+  --radius-lg: var(--radius-card);
+  --shadow-sm: var(--shadow-card);
+}
+
+[data-theme="dark"] {
+  --color-navy: #2f5f99;
+  --color-navy-hover: #3d70ad;
+  --color-navy-soft: #1b2d47;
+  --color-bg: #0a1120;
+  --color-surface: #111a2c;
+  --color-surface-2: #17223a;
+  --color-border: #26344f;
+  --color-border-strong: #3a4b6b;
+  --color-text: #e6edf7;
+  --color-text-muted: #9fb0c7;
+  --color-on-soft: #cfe0f5;
+  --color-link: #8ab4e6;
+  --color-accent-green: #4ade80;
+  --color-focus-ring: rgba(74, 222, 128, 0.28);
+  --color-overlay: rgba(2, 6, 15, 0.7);
+  --color-success-soft: rgba(74, 222, 128, 0.14);
+  --color-success-text: #4ade80;
+  --color-warning: #f59e0b;
+  --color-warning-soft: rgba(245, 158, 11, 0.14);
+  --color-warning-text: #fbbf24;
+  --color-danger: #f87171;
+  --color-danger-soft: rgba(248, 113, 113, 0.14);
+  --color-danger-text: #fca5a5;
+  --color-info: #38bdf8;
+  --color-info-soft: rgba(56, 189, 248, 0.14);
+  --color-sidebar: #0a1424;
+  --color-sidebar-hover: #15243d;
+  --color-sidebar-text: #b8c6da;
+
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4), 0 4px 16px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.55);
+
+  --color-primary: var(--color-navy);
+  --color-primary-hover: var(--color-navy-hover);
+  --color-primary-soft: var(--color-navy-soft);
+  --color-primary-light: var(--color-accent-green);
+  --color-card: var(--color-surface);
+  --color-muted: var(--color-text-muted);
+  --color-success: var(--color-accent-green);
+  --color-neutral-soft: var(--color-surface-2);
+  --shadow-sm: var(--shadow-card);
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+html[data-theme="light"] {
+  color-scheme: light;
+}
+
+/* 2. Base ----------------------------------------------------------------- */
+body {
+  font-family: system-ui, "Segoe UI", Inter, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+a {
+  color: var(--color-link);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent-green);
+  outline-offset: 2px;
+}
+
+/* 4. Sidebar -------------------------------------------------------------- */
+.sidebar-logo {
+  background: var(--color-accent-green);
+}
+
+.sidebar-link {
+  position: relative;
+}
+
+.sidebar-link:hover {
+  background: var(--color-sidebar-hover);
+  color: #fff;
+}
+
+.sidebar-link.is-active {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  box-shadow: none;
+  font-weight: 600;
+}
+
+.sidebar-link.is-active::before {
+  content: "";
+  position: absolute;
+  left: -12px;
+  top: 8px;
+  bottom: 8px;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+  background: var(--color-accent-green);
+}
+
+.sidebar-user-role {
+  color: #a9bcd6;
+}
+
+.sidebar-avatar,
+.topbar-avatar,
+.empty-state-icon {
+  background: var(--color-navy-soft);
+  color: var(--color-on-soft);
+}
+
+.topbar {
+  background: var(--color-surface);
+  border-bottom-color: var(--color-border);
+}
+
+/* 6. Page header, stat cards, empty state -------------------------------- */
+.page-header p {
+  color: var(--color-text-muted);
+}
+
+.stat-value {
+  font-variant-numeric: tabular-nums;
+  font-weight: 650;
+}
+
+.stat-label {
+  color: var(--color-text-muted);
+}
+
+.stat-trend.is-up {
+  color: var(--color-success-text);
+}
+
+.stat-trend.is-down {
+  color: var(--color-danger-text);
+}
+
+.stat-card:hover {
+  transform: none;
+}
+
+.empty-state-title {
+  font-weight: 650;
+}
+
+.empty-state-description {
+  color: var(--color-text-muted);
+}
+
+/* 7. Buttons -------------------------------------------------------------- */
+.btn {
+  border-radius: var(--radius-control);
+  font-weight: 600;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--color-accent-green);
+  outline-offset: 2px;
+}
+
+.btn-primary {
+  background: var(--color-navy);
+  border-color: var(--color-navy);
+  color: #fff;
+  box-shadow: none;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--color-navy-hover);
+  border-color: var(--color-navy-hover);
+  box-shadow: var(--shadow-card);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--color-text);
+  border-color: var(--color-border-strong);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: var(--color-surface-2);
+  border-color: var(--color-accent-green);
+  color: var(--color-text);
+}
+
+.btn-ghost:hover:not(:disabled) {
+  background: var(--color-surface-2);
+}
+
+/* 8. Cards ---------------------------------------------------------------- */
+.card,
+.stat-card,
+.table-wrap,
+.modal,
+.drawer {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+}
+
+.card-title {
+  font-weight: 650;
+}
+
+/* 9. Tables -------------------------------------------------------------- */
+.table th {
+  background: var(--color-surface-2);
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.table th,
+.table td {
+  border-bottom-color: var(--color-border);
+}
+
+.table tbody tr:nth-child(even) {
+  background: var(--color-surface-2);
+}
+
+.table tbody tr:hover {
+  background: var(--color-navy-soft);
+}
+
+/* 10. Badges -------------------------------------------------------------- */
+.badge-success {
+  background: var(--color-success-soft);
+  color: var(--color-success-text);
+}
+
+.badge-warning {
+  background: var(--color-warning-soft);
+  color: var(--color-warning-text);
+}
+
+.badge-danger {
+  background: var(--color-danger-soft);
+  color: var(--color-danger-text);
+}
+
+.badge-neutral {
+  background: var(--color-surface-2);
+  color: var(--color-text-muted);
+}
+
+.badge-info {
+  background: var(--color-info-soft);
+  color: var(--color-info);
+}
+
+/* 11. Forms --------------------------------------------------------------- */
+.input,
+select,
+textarea {
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+}
+
+.input::placeholder,
+textarea::placeholder {
+  color: var(--color-text-muted);
+  opacity: 1;
+}
+
+.input:hover {
+  border-color: var(--color-border-strong);
+}
+
+.input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--color-accent-green);
+  box-shadow: 0 0 0 3px var(--color-focus-ring);
+}
+
+/* Keep the red invalid state ahead of the green focus ring */
+.input.is-invalid,
+.input.is-invalid:hover,
+.input.is-invalid:focus {
+  border-color: var(--color-danger);
+}
+
+.input.is-invalid:focus {
+  box-shadow: 0 0 0 3px var(--color-danger-soft);
+}
+
+/* 12. Modal, drawer & dialog --------------------------------------------- */
+.modal-overlay {
+  background: var(--color-overlay);
+}
+
+dialog {
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-lg);
+}
+
+dialog::backdrop {
+  background: var(--color-overlay);
+}
+
+/* 1b. Utility classes (ui-*) --------------------------------------------- */
+.ui-page-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.ui-page-header h1 {
+  margin: 0;
+  font-size: var(--font-size-xl);
+}
+
+.ui-page-header p {
+  margin: var(--space-1) 0 0;
+  color: var(--color-text-muted);
+}
+
+.ui-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  padding: var(--space-8) var(--space-6);
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+.ui-skeleton {
+  display: block;
+  border-radius: var(--radius-control);
+  background: var(--color-surface-2);
+}
+
+.ui-alert-success,
+.ui-alert-warning,
+.ui-alert-error {
+  padding: var(--space-3) var(--space-4);
+  border-left: 4px solid;
+  border-radius: var(--radius-control);
+  color: var(--color-text);
+}
+
+.ui-alert-success {
+  border-left-color: var(--color-accent-green);
+  background: var(--color-success-soft);
+}
+
+.ui-alert-warning {
+  border-left-color: var(--color-warning);
+  background: var(--color-warning-soft);
+}
+
+.ui-alert-error {
+  border-left-color: var(--color-danger);
+  background: var(--color-danger-soft);
+}
+
+/* 6b. Motion (only when the user has not asked for reduced motion) ------- */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes ui-shimmer {
+    from { background-position: 200% 0; }
+    to { background-position: -200% 0; }
+  }
+
+  .btn {
+    transition: background-color 150ms ease, border-color 150ms ease,
+      color 150ms ease, box-shadow 150ms ease, transform 150ms ease;
+  }
+
+  .card-hover {
+    transition: box-shadow 200ms ease, transform 200ms ease;
+  }
+
+  .card-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .table tbody tr {
+    transition: background-color 150ms ease;
+  }
+
+  .sidebar-link,
+  .sidebar-link.is-active::before {
+    transition: background-color 150ms ease, color 150ms ease;
+  }
+
+  .ui-skeleton {
+    background: linear-gradient(
+      90deg,
+      var(--color-surface-2) 25%,
+      var(--color-border) 50%,
+      var(--color-surface-2) 75%
+    );
+    background-size: 200% 100%;
+    animation: ui-shimmer 1.4s ease-in-out infinite;
+  }
+}
+
+/* 14. Responsive --------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .stat-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .card,
+  .stat-card,
+  .modal,
+  .drawer {
+    padding: var(--space-4);
+  }
+
+  .stat-grid {
+    grid-template-columns: 1fr;
+  }
+}

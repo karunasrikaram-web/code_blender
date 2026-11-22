@@ -150,10 +150,12 @@ export default function CashFlowForecastPage() {
 
   return (
     <div>
-      <PageHeader
-        title="Cash Flow Forecast"
-        description="See how upcoming invoices and expenses are expected to shape your cash position."
-      />
+      <div className="ui-page-header">
+        <PageHeader
+          title="Cash Flow Forecast"
+          description="See how upcoming invoices and expenses are expected to shape your cash position."
+        />
+      </div>
 
       <div
         role="group"
@@ -200,7 +202,7 @@ export default function CashFlowForecastPage() {
       )}
 
       {!loading && error && (
-        <div role="alert" style={bannerStyle}>
+        <div role="alert" className="ui-alert-error" style={bannerStyle}>
           {error}
         </div>
       )}
@@ -294,7 +296,7 @@ export default function CashFlowForecastPage() {
           <section className="card">
             <h2 className="card-title">Insights</h2>
             {forecast.insights.length === 0 ? (
-              <p style={mutedStyle}>No insights for this period.</p>
+              <p className="ui-empty" style={mutedStyle}>No insights for this period.</p>
             ) : (
               <ul style={{ margin: 0, paddingLeft: 'var(--space-5)' }}>
                 {forecast.insights.map((text, index) => (

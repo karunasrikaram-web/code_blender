@@ -133,10 +133,12 @@ export default function AiAssistantPage() {
 
   return (
     <div>
-      <PageHeader
-        title="AI Financial Assistant"
-        description="Answers use your recorded invoices, payments and expenses. These are estimates, not guaranteed financial advice."
-      />
+      <div className="ui-page-header">
+        <PageHeader
+          title="AI Financial Assistant"
+          description="Answers use your recorded invoices, payments and expenses. These are estimates, not guaranteed financial advice."
+        />
+      </div>
 
       <section
         className="card"

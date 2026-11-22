@@ -245,10 +245,12 @@ export default function WhatIfSimulatorPage() {
 
   return (
     <div>
-      <PageHeader
-        title="What-If Simulator"
-        description="Test how invoice delays and unexpected expenses could change your projected cash balance. Nothing is saved."
-      />
+      <div className="ui-page-header">
+        <PageHeader
+          title="What-If Simulator"
+          description="Test how invoice delays and unexpected expenses could change your projected cash balance. Nothing is saved."
+        />
+      </div>
 
       <div
         role="group"
@@ -312,7 +314,7 @@ export default function WhatIfSimulatorPage() {
       )}
 
       {!loading && error && (
-        <div role="alert" style={bannerStyle}>
+        <div role="alert" className="ui-alert-error" style={bannerStyle}>
           {error}
         </div>
       )}
@@ -322,7 +324,7 @@ export default function WhatIfSimulatorPage() {
           <section className="card" style={{ marginBottom: 'var(--space-6)' }}>
             <h2 className="card-title">Invoice delays</h2>
             {unpaidInvoices.length === 0 ? (
-              <p style={mutedStyle}>No unpaid invoices to simulate. Add invoices to test delays.</p>
+              <p className="ui-empty" style={mutedStyle}>No unpaid invoices to simulate. Add invoices to test delays.</p>
             ) : (
               <div style={{ overflowX: 'auto' }}>
                 <table style={{ width: '100%', borderCollapse: 'collapse' }}>
@@ -543,7 +545,7 @@ export default function WhatIfSimulatorPage() {
           <section className="card">
             <h2 className="card-title">Delayed invoices</h2>
             {scenario.delayedInvoices.length === 0 ? (
-              <p style={mutedStyle}>No invoices are delayed in this scenario.</p>
+              <p className="ui-empty" style={mutedStyle}>No invoices are delayed in this scenario.</p>
             ) : (
               <div style={{ overflowX: 'auto' }}>
                 <table style={{ width: '100%', borderCollapse: 'collapse' }}>

@@ -111,15 +111,17 @@ export default function DashboardPage() {
 
   return (
     <div>
-      <PageHeader
-        title="Dashboard"
-        description="Welcome back, Alex. Here is your business at a glance."
-        actions={
-          <Link to="/invoices" className="btn btn-primary">
-            New invoice
-          </Link>
-        }
-      />
+      <div className="ui-page-header">
+        <PageHeader
+          title="Dashboard"
+          description="Welcome back, Alex. Here is your business at a glance."
+          actions={
+            <Link to="/invoices" className="btn btn-primary">
+              New invoice
+            </Link>
+          }
+        />
+      </div>
 
       {error && (
         <p role="alert" style={{ color: '#dc2626' }}>
